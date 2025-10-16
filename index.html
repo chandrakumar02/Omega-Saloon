@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMEGA Hair Saloon - Premium Men's Grooming in Nandyala</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #FFD700;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1621607512344-9ad9dc9c2770?q=80&w=2070') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            background: #FFD700;
+            color: #000;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #111;
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #FFD700;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #222 0%, #333 100%);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #444;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.1);
+            border-color: #FFD700;
+        }
+
+        .service-card h3 {
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .service-card p {
+            color: #ccc;
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFD700;
+            font-family: 'Inter', sans-serif;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: #000;
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: #FFD700;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Booking Section */
+        .booking {
+            padding: 80px 0;
+            background: #111;
+            color: white;
+        }
+
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #222;
+            padding: 3rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #FFD700;
+            color: #000;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #FFA500;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #000;
+            color: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: #222;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">OMEGA HAIR SALOON</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>OMEGA HAIR SALOON</h1>
+            <p>Premium Men's Grooming in Nandyala</p>
+            <p>Professional Cuts • Expert Styling • Home Service Available</p>
+            <a href="#booking" class="cta-btn">Book Your Appointment</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <!-- ✂️ CUTS -->
+                <div class="service-card">
+                    <h3>✂️ Hair Cut</h3>
+                    <p>Modern and classic haircuts tailored to your style</p>
+                    <div class="price">₹100</div>
+                </div>
+                <div class="service-card">
+                    <h3>✂️ Shave</h3>
+                    <p>Clean, professional traditional shave experience</p>
+                    <div class="price">₹60</div>
+                </div>
+                <div class="service-card">
+                    <h3>✂️ Shape + Trim</h3>
+                    <p>Expert beard shaping and precision trimming</p>
+                    <div class="price">₹60</div>
+                </div>
+                <div class="service-card">
+                    <h3>✂️ Hair Cut + Shape</h3>
+                    <p>Complete grooming package for the modern man</p>
+                    <div class="price">₹150</div>
+                </div>
+                <!-- 🎨 COLORING -->
+                <div class="service-card">
+                    <h3>🎨 Hair Cut + Shape + Colour</h3>
+                    <p>Full transformation with premium styling and color</p>
+                    <div class="price">₹250</div>
+                </div>
+                <div class="service-card">
+                    <h3>🎨 Hair Colour</h3>
+                    <p>Professional hair coloring with quality products</p>
+                    <div class="price">₹100</div>
+                </div>
+                <!-- 💆 SERVICES -->
+                <div class="service-card">
+                    <h3>💆 Oil Massage</h3>
+                    <p>Relaxing scalp massage with nourishing oils</p>
+                    <div class="price">₹70</div>
+                </div>
+                <div class="service-card">
+                    <h3>💆 Scrub</h3>
+                    <p>Deep cleansing facial scrub for refreshed skin</p>
+                    <div class="price">₹150</div>
+                </div>
+                <div class="service-card">
+                    <h3>💆 D-Tan</h3>
+                    <p>Professional de-tanning treatment for even skin tone</p>
+                    <div class="price">₹150</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About OMEGA Hair Saloon</h2>
+                    <p>Located in the heart of Nandyala at Deva Nagar Colony, OMEGA Hair Saloon has been serving the community with premium men's grooming services for over 10 years.</p>
+                    <br>
+                    <p>Founded by Balu, our salon combines traditional barbering techniques with modern styling trends. We pride ourselves on delivering exceptional service and ensuring every client leaves feeling confident and refreshed.</p>
+                    <br>
+                    <p>What sets us apart is our commitment to quality and our unique home service offering - bringing professional grooming directly to your doorstep when you can't visit our salon.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="OMEGA Hair Saloon Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Appointment</h2>
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email (Optional)</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="service">Select Service</label>
+                    <select id="service" name="service" required>
+                        <option value="">Choose a service</option>
+                        <option value="Hair Cut (₹100)">Hair Cut (₹100)</option>
+                        <option value="Shave (₹60)">Shave (₹60)</option>
+                        <option value="Shape + Trim (₹60)">Shape + Trim (₹60)</option>
+                        <option value="Hair Cut + Shape (₹150)">Hair Cut + Shape (₹150)</option>
+                        <option value="Hair Cut + Shape + Colour (₹250)">Hair Cut + Shape + Colour (₹250)</option>
+                        <option value="Hair Colour (₹100)">Hair Colour (₹100)</option>
+                        <option value="Oil Massage (₹70)">Oil Massage (₹70)</option>
+                        <option value="Scrub (₹150)">Scrub (₹150)</option>
+                        <option value="D-Tan (₹150)">D-Tan (₹150)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time</label>
+                    <select id="time" name="time" required>
+                        <option value="">Select time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                        <option value="6:00 PM">6:00 PM</option>
+                        <option value="7:00 PM">7:00 PM</option>
+                        <option value="8:00 PM">8:00 PM</option>
+                        <option value="9:00 PM">9:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="homeService" style="width: auto; margin-right: 10px;">
+                        Request Home Service (+₹50)
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Book Appointment</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>📍 Location</h3>
+                    <p>FFGF+H6P, Deva Nagar Colony<br>Nandyala, Andhra Pradesh 518501</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📞 Phone</h3>
+                    <p>+91 9182097974<br>+91 9703336945</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📧 Email</h3>
+                    <p>baluomega143@gmail.com</p>
+                </div>
+                <div class="contact-card">
+                    <h3>🕒 Hours</h3>
+                    <p>Monday - Sunday<br>9:00 AM - 9:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 OMEGA Hair Saloon. All rights reserved. | Nandyala's Premier Men's Grooming Destination</p>
+        </div>
+    </footer>
+
+    <script>
+        // Handle form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const homeService = document.getElementById('homeService').checked ? 'Yes (+₹50)' : 'No';
+            
+            const message = `🎯 NEW BOOKING REQUEST\n\n👤 Customer: ${name}\n📱 Phone: ${phone}\n📧 Email: ${email || 'Not provided'}\n✂️ Service: ${service}\n📅 Date: ${date}\n🕐 Time: ${time}\n🏠 Home Service: ${homeService}\n\nPlease confirm this appointment.`;
+            
+            // Send WhatsApp directly (works immediately)
+            const whatsappUrl = `https://wa.me/919182097974?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            alert('✅ Booking submitted! WhatsApp opened to notify owner.');
+            
+            document.getElementById('bookingForm').reset();
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
