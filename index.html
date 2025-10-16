@@ -241,7 +241,8 @@
         }
 
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #444;
@@ -249,6 +250,16 @@
             background: #333;
             color: white;
             font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .form-group textarea::placeholder {
+            color: #999;
         }
 
         .submit-btn {
@@ -302,18 +313,145 @@
             padding: 2rem 0;
         }
 
-        /* Responsive */
+        /* Mobile Optimizations */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
             .nav-links {
                 display: none;
             }
             
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                height: 80vh;
+                padding: 20px 0;
+            }
+            
             .hero-content h1 {
                 font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .cta-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .service-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .service-card p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .price {
+                font-size: 1.8rem;
+            }
+            
+            .about {
+                padding: 60px 0;
             }
             
             .about-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-text h2 {
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            .booking {
+                padding: 60px 0;
+            }
+            
+            .booking-form {
+                padding: 2rem 1.5rem;
+                margin: 0 15px;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            #currentLocationBtn {
+                width: 100%;
+                padding: 12px 15px !important;
+                font-size: 1rem !important;
+                margin-top: 15px !important;
+            }
+            
+            .submit-btn {
+                padding: 18px;
+                font-size: 1.1rem;
+            }
+            
+            .contact {
+                padding: 60px 0;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .contact-card {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Extra Small Mobile */
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .service-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .booking-form {
+                padding: 1.5rem 1rem;
             }
         }
     </style>
@@ -454,6 +592,7 @@
                     <label for="time">Preferred Time</label>
                     <select id="time" name="time" required>
                         <option value="">Select time</option>
+                        <option value="8:00 AM">8:00 AM</option>
                         <option value="9:00 AM">9:00 AM</option>
                         <option value="10:00 AM">10:00 AM</option>
                         <option value="11:00 AM">11:00 AM</option>
@@ -472,8 +611,13 @@
                 <div class="form-group">
                     <label>
                         <input type="checkbox" id="homeService" style="width: auto; margin-right: 10px;">
-                        Request Home Service (+₹50)
+                        Request Home Service (+₹100)
                     </label>
+                </div>
+                <div class="form-group" id="locationGroup" style="display: none;">
+                    <label for="location">Your Address (Required for Home Service)</label>
+                    <textarea id="location" name="location" placeholder="Enter your complete address with landmarks..." style="height: 80px; resize: vertical;"></textarea>
+                    <button type="button" id="currentLocationBtn" style="margin-top: 10px; padding: 8px 15px; background: #444; color: #FFD700; border: 1px solid #FFD700; border-radius: 5px; cursor: pointer; font-size: 0.9rem;">📍 Send My Current Location</button>
                 </div>
                 <button type="submit" class="submit-btn">Book Appointment</button>
             </form>
@@ -498,7 +642,7 @@
                 </div>
                 <div class="contact-card">
                     <h3>🕒 Hours</h3>
-                    <p>Monday - Sunday<br>9:00 AM - 9:00 PM</p>
+                    <p>Monday - Sunday<br>8:00 AM - 9:00 PM</p>
                 </div>
             </div>
         </div>
@@ -521,9 +665,16 @@
             const service = document.getElementById('service').value;
             const date = document.getElementById('date').value;
             const time = document.getElementById('time').value;
-            const homeService = document.getElementById('homeService').checked ? 'Yes (+₹50)' : 'No';
+            const homeService = document.getElementById('homeService').checked ? 'Yes (+₹100)' : 'No';
+            const location = document.getElementById('location').value;
             
-            const message = `🎯 NEW BOOKING REQUEST\n\n👤 Customer: ${name}\n📱 Phone: ${phone}\n📧 Email: ${email || 'Not provided'}\n✂️ Service: ${service}\n📅 Date: ${date}\n🕐 Time: ${time}\n🏠 Home Service: ${homeService}\n\nPlease confirm this appointment.`;
+            let message = `🎯 NEW BOOKING REQUEST\n\n👤 Customer: ${name}\n📱 Phone: ${phone}\n📧 Email: ${email || 'Not provided'}\n✂️ Service: ${service}\n📅 Date: ${date}\n🕐 Time: ${time}\n🏠 Home Service: ${homeService}`;
+            
+            if (document.getElementById('homeService').checked && location) {
+                message += `\n📍 Address: ${location}`;
+            }
+            
+            message += `\n\nPlease confirm this appointment.`;
             
             // Send WhatsApp directly (works immediately)
             const whatsappUrl = `https://wa.me/919182097974?text=${encodeURIComponent(message)}`;
@@ -545,6 +696,74 @@
 
         // Set minimum date to today
         document.getElementById('date').min = new Date().toISOString().split('T')[0];
+        
+        // Show/hide location field based on home service selection
+        document.getElementById('homeService').addEventListener('change', function() {
+            const locationGroup = document.getElementById('locationGroup');
+            const locationField = document.getElementById('location');
+            
+            if (this.checked) {
+                locationGroup.style.display = 'block';
+                locationField.required = true;
+            } else {
+                locationGroup.style.display = 'none';
+                locationField.required = false;
+                locationField.value = '';
+            }
+        });
+        
+        // Get current location
+        document.getElementById('currentLocationBtn').addEventListener('click', function() {
+            const btn = this;
+            const locationField = document.getElementById('location');
+            
+            btn.innerHTML = '📍 Getting Location...';
+            btn.disabled = true;
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        const googleMapsLink = `https://maps.google.com/?q=${lat},${lng}`;
+                        
+                        locationField.value = `📍 Current Location: ${lat}, ${lng}\nGoogle Maps: ${googleMapsLink}`;
+                        btn.innerHTML = '✅ Location Added';
+                        btn.style.background = '#28a745';
+                        btn.style.borderColor = '#28a745';
+                        btn.style.color = 'white';
+                        
+                        setTimeout(() => {
+                            btn.innerHTML = '📍 Send My Current Location';
+                            btn.style.background = '#444';
+                            btn.style.borderColor = '#FFD700';
+                            btn.style.color = '#FFD700';
+                            btn.disabled = false;
+                        }, 2000);
+                    },
+                    function(error) {
+                        btn.innerHTML = '❌ Location Access Denied';
+                        btn.style.background = '#dc3545';
+                        btn.style.borderColor = '#dc3545';
+                        btn.style.color = 'white';
+                        
+                        setTimeout(() => {
+                            btn.innerHTML = '📍 Send My Current Location';
+                            btn.style.background = '#444';
+                            btn.style.borderColor = '#FFD700';
+                            btn.style.color = '#FFD700';
+                            btn.disabled = false;
+                        }, 2000);
+                        
+                        alert('Please allow location access or enter your address manually.');
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by this browser. Please enter your address manually.');
+                btn.innerHTML = '📍 Send My Current Location';
+                btn.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>
