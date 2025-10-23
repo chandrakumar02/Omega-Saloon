@@ -1,4 +1,4 @@
-https://chandrakumar02.github.io/saloon
+https://chandrakumar02.github.io/Omega-Saloon
 Hair Saloon Website
 
 
